@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消费者行为分析报告</title>
+    <!-- 引入Chart.js用于数据可视化 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        .analysis-section {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .chart-container {
+            height: 400px;
+            margin: 20px auto;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+        .key-fact {
+            background: #f1f5f9;
+            border-left: 4px solid #3498db;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">消费者行为分析</a>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <!-- 购买决策因素分析 -->
+        <div class="analysis-section">
+            <h2>购买决策关键因素</h2>
+            <div class="key-fact">TOP3因素：产品质量（78%）、价格（65%）、品牌口碑（52%）</div>
+            <div class="chart-container">
+                <canvas id="purchaseFactors"></canvas>
+            </div>
+        </div>
+
+        <!-- 消费渠道偏好 -->
+        <div class="analysis-section">
+            <h2>消费渠道偏好分布</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="chart-container">
+                        <canvas id="channelPreference"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="mt-4">关键发现：</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item">移动端消费占比同比增长23%</li>
+                        <li class="list-group-item">线下体验店复购率最高（68%）</li>
+                        <li class="list-group-item">社交媒体渠道转化率提升显著</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 消费者年龄分布 -->
+        <div class="analysis-section">
+            <h2>消费者年龄分布</h2>
+            <div class="chart-container">
+                <canvas id="ageDistribution"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 购买决策因素数据
+        new Chart(document.getElementById('purchaseFactors'), {
+            type: 'bar',
+            data: {
+                labels: ['产品质量', '价格', '品牌口碑', '配送速度', '售后服务', '促销活动'],
+                datasets: [{
+                    label: '关注度占比(%)',
+                    data: [78, 65, 52, 45, 38, 32],
+                    backgroundColor: [
+                        'rgba(52, 152, 219, 0.8)',
+                        'rgba(46, 204, 113, 0.8)',
+                        'rgba(155, 89, 182, 0.8)',
+                        'rgba(241, 196, 15, 0.8)',
+                        'rgba(231, 76, 60, 0.8)',
+                        'rgba(127, 140, 141, 0.8)'
+                    ]
+                }]
+            }
+        });
+
+        // 消费渠道偏好数据
+        new Chart(document.getElementById('channelPreference'), {
+            type: 'pie',
+            data: {
+                labels: ['电商平台', '品牌官网', '线下门店', '社交媒体', '直播带货'],
+                datasets: [{
+                    label: '渠道占比',
+                    data: [45, 18, 22, 10, 5],
+                    backgroundColor: [
+                        '#3498db',
+                        '#2ecc71',
+                        '#9b59b6',
+                        '#f1c40f',
+                        '#e74c3c'
+                    ]
+                }]
+            }
+        });
+
+        // 年龄分布数据
+        new Chart(document.getElementById('ageDistribution'), {
+            type: 'line',
+            data: {
+                labels: ['18-24岁', '25-30岁', '31-35岁', '36-40岁', '41-50岁'],
+                datasets: [{
+                    label: '消费者占比(%)',
+                    data: [28, 35, 22, 10, 5],
+                    borderColor: '#3498db',
+                    tension: 0.4,
+                    fill: false
+                }]
+            }
+        });
+    </script>
+</body>
+</html>
